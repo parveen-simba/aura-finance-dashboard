@@ -1,70 +1,110 @@
-import { motion } from "framer-motion";
 import { useFinance } from "@/context/FinanceContext";
 import { AddTransactionModal } from "./AddTransactionModal";
-import { Shield, Eye, Moon, Sun } from "lucide-react";
-import { useTheme } from "@/hooks/use-theme";
+import { Shield, Eye } from "lucide-react";
 
 export const Header = () => {
   const { role, setRole } = useFinance();
-  const { theme, toggleTheme } = useTheme();
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-    >
-      <div className="flex items-center gap-4">
-        {/* <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg"
-          style={{ boxShadow: '0 8px 32px -4px hsl(217 91% 60% / 0.4)' }}
-        >
-          <Sparkles className="w-6 h-6 text-primary-foreground" />
-        </motion.div> */}
-        <img src="./public/favicon.png" alt="Logo" className="w-12 h-12 rounded-2xl" />
-        <div>
-          <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
-            <span className="gradient-text">Finance</span>{" "}
-            <span className="text-foreground">Dashboard</span>
-          </h1>
-          <p className="text-sm text-muted-foreground mt-0.5">Welcome back — here's your overview</p>
-        </div>
+    <div className="win-window" style={{ marginBottom: 8 }}>
+      {/* Section title bar */}
+      <div className="win-titlebar">
+        <img
+          src="/favicon.png"
+          alt="Finance icon"
+          style={{ width: 14, height: 14, imageRendering: "pixelated", flexShrink: 0 }}
+        />
+        <span>Finance Dashboard — Control Panel</span>
+        <div style={{ flex: 1 }} />
       </div>
-      <div className="flex items-center gap-3">
-        <motion.button
-          onClick={toggleTheme}
-          whileTap={{ scale: 0.95 }}
-          className="h-10 px-3 flex items-center gap-2 rounded-xl border border-border/60 bg-card/60 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all duration-300"
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          <span className="text-xs font-medium capitalize">{theme}</span>
-        </motion.button>
-        <div className="flex items-center gap-1 bg-muted/40 rounded-xl p-1 border border-border/50 backdrop-blur-sm">
-          {(["viewer", "admin"] as const).map((r) => (
-            <motion.button
-              key={r}
-              onClick={() => setRole(r)}
-              whileTap={{ scale: 0.95 }}
-              className={`flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-lg transition-all duration-300 capitalize ${
-                role === r
-                  ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-              style={role === r ? { boxShadow: '0 4px 20px -2px hsl(217 91% 60% / 0.4)' } : {}}
+
+      {/* Header content area */}
+      <div
+        style={{
+          padding: "6px 8px",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 8,
+          backgroundColor: "hsl(0 0% 85%)",
+        }}
+      >
+        {/* Title / branding */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <img
+            src="/favicon.png"
+            alt="Logo"
+            style={{ width: 32, height: 32, imageRendering: "pixelated" }}
+          />
+          <div>
+            <h1
+              style={{
+                fontSize: 16,
+                fontWeight: "bold",
+                margin: 0,
+                fontFamily: "'Tahoma', sans-serif",
+                lineHeight: 1.2,
+              }}
             >
-              {r === "admin" ? <Shield className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-              {r}
-            </motion.button>
-          ))}
+              <span style={{ color: "#000080" }}>Finance</span>{" "}
+              <span style={{ color: "#000000" }}>Dashboard</span>
+            </h1>
+            <p style={{ fontSize: 10, color: "#444", margin: 0 }}>
+              Welcome back — here&apos;s your overview
+            </p>
+          </div>
         </div>
-        <AddTransactionModal />
+
+        {/* Controls */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+          {/* Role selector — looks like a toolbar group box */}
+          <div
+            className="win-inset"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "2px 4px",
+              gap: 4,
+              fontSize: 11,
+            }}
+            role="group"
+            aria-label="Role selection"
+          >
+            <span style={{ fontSize: 10, color: "#444", marginRight: 2 }}>Role:</span>
+            {(["viewer", "admin"] as const).map((r) => (
+              <button
+                key={r}
+                onClick={() => setRole(r)}
+                className={role === r ? "win-sunken" : "win-raised"}
+                style={{
+                  padding: "2px 8px",
+                  fontSize: 11,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                  fontFamily: "'Tahoma', sans-serif",
+                  fontWeight: role === r ? "bold" : "normal",
+                  color: role === r ? "#000080" : "#000000",
+                  textTransform: "capitalize",
+                  backgroundColor: "hsl(0 0% 85%)",
+                }}
+                aria-pressed={role === r}
+              >
+                {r === "admin" ? (
+                  <Shield style={{ width: 12, height: 12 }} />
+                ) : (
+                  <Eye style={{ width: 12, height: 12 }} />
+                )}
+                {r}
+              </button>
+            ))}
+          </div>
+
+          <AddTransactionModal />
+        </div>
       </div>
-    </motion.header>
+    </div>
   );
 };

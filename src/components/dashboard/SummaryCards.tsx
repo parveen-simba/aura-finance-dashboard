@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { DollarSign, TrendingUp, TrendingDown, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { DollarSign, TrendingUp, TrendingDown } from "lucide-react";
 import { useFinance } from "@/context/FinanceContext";
 
 const formatCurrency = (n: number) =>
@@ -9,96 +8,117 @@ const cards = [
   {
     key: "balance",
     label: "Total Balance",
-    icon: DollarSign,
+    Icon: DollarSign,
     getValue: (b: number) => b,
-    accent: "primary" as const,
+    iconColor: "#000080",
+    titleColor: "#000080",
     change: "+12.5%",
     positive: true,
   },
   {
     key: "income",
     label: "Total Income",
-    icon: TrendingUp,
+    Icon: TrendingUp,
     getValue: (_: number, i: number) => i,
-    accent: "success" as const,
+    iconColor: "#008000",
+    titleColor: "#008000",
     change: "+8.2%",
     positive: true,
   },
   {
     key: "expenses",
     label: "Total Expenses",
-    icon: TrendingDown,
+    Icon: TrendingDown,
     getValue: (_: number, __: number, e: number) => e,
-    accent: "destructive" as const,
+    iconColor: "#CC0000",
+    titleColor: "#CC0000",
     change: "-3.1%",
     positive: false,
   },
 ];
 
-const accentConfig = {
-  primary: {
-    card: "bg-gradient-to-br from-primary/15 via-card/80 to-accent/10 border-primary/20 hover:border-primary/50",
-    icon: "bg-primary/15 text-primary ring-1 ring-primary/20",
-    glow: "hsl(217 91% 60% / 0.3)",
-    dot: "bg-primary",
-  },
-  success: {
-    card: "bg-gradient-to-br from-success/15 via-card/80 to-success/5 border-success/20 hover:border-success/50",
-    icon: "bg-success/15 text-success ring-1 ring-success/20",
-    glow: "hsl(142 71% 45% / 0.3)",
-    dot: "bg-success",
-  },
-  destructive: {
-    card: "bg-gradient-to-br from-destructive/15 via-card/80 to-destructive/5 border-destructive/20 hover:border-destructive/50",
-    icon: "bg-destructive/15 text-destructive ring-1 ring-destructive/20",
-    glow: "hsl(0 84% 60% / 0.3)",
-    dot: "bg-destructive",
-  },
-};
-
 export const SummaryCards = () => {
   const { totalBalance, totalIncome, totalExpenses } = useFinance();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-      {cards.map((card, i) => {
-        const Icon = card.icon;
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        gap: 8,
+        marginBottom: 8,
+      }}
+    >
+      {cards.map((card) => {
+        const { Icon } = card;
         const value = card.getValue(totalBalance, totalIncome, totalExpenses);
-        const config = accentConfig[card.accent];
-        return (
-          <motion.div
-            key={card.key}
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ scale: 1.03, y: -4 }}
-            className={`stat-card ${config.card}`}
-            style={{ transition: 'box-shadow 0.4s ease' }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 50px -10px ${config.glow}`; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
-          >
-            {/* Decorative orb */}
-            <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full ${config.dot} opacity-10 blur-2xl`} />
 
-            <div className="flex items-center justify-between mb-5">
-              <span className="text-sm font-medium text-muted-foreground tracking-wide">{card.label}</span>
-              <div className={`p-2.5 rounded-xl ${config.icon}`}>
-                <Icon className="w-5 h-5" />
+        return (
+          <div key={card.key} className="win-window" style={{ overflow: "hidden" }}>
+            {/* Mini title bar */}
+            <div
+              className="win-titlebar"
+              style={{ fontSize: 10, padding: "2px 4px", gap: 4 }}
+            >
+              <Icon style={{ width: 12, height: 12, flexShrink: 0 }} aria-hidden="true" />
+              <span>{card.label}</span>
+            </div>
+
+            {/* Card body */}
+            <div
+              style={{
+                padding: "10px 12px",
+                backgroundColor: "hsl(0 0% 85%)",
+              }}
+            >
+              {/* Value */}
+              <div
+                style={{
+                  fontSize: 22,
+                  fontWeight: "bold",
+                  color: card.titleColor,
+                  fontFamily: "'Tahoma', sans-serif",
+                  lineHeight: 1.2,
+                  marginBottom: 6,
+                }}
+              >
+                {formatCurrency(value)}
+              </div>
+
+              {/* Progress bar */}
+              <div className="win-progress-track" style={{ marginBottom: 6 }}>
+                <div
+                  className="win-progress-fill"
+                  style={{
+                    width: "60%",
+                    background: card.positive
+                      ? "repeating-linear-gradient(90deg, #000080 0px, #000080 8px, #3399FF 8px, #3399FF 10px)"
+                      : "repeating-linear-gradient(90deg, #CC0000 0px, #CC0000 8px, #FF6666 8px, #FF6666 10px)",
+                  }}
+                />
+              </div>
+
+              {/* Change indicator */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                  fontSize: 10,
+                }}
+              >
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    color: card.positive ? "#008000" : "#CC0000",
+                  }}
+                >
+                  {card.change}
+                </span>
+                <span style={{ color: "#444" }}>vs last month</span>
               </div>
             </div>
-            <p className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">{formatCurrency(value)}</p>
-            <div className="flex items-center gap-1.5 mt-3">
-              {card.positive ? (
-                <ArrowUpRight className="w-3.5 h-3.5 text-success" />
-              ) : (
-                <ArrowDownRight className="w-3.5 h-3.5 text-destructive" />
-              )}
-              <span className={`text-xs font-semibold ${card.positive ? "text-success" : "text-destructive"}`}>
-                {card.change}
-              </span>
-              <span className="text-xs text-muted-foreground">vs last month</span>
-            </div>
-          </motion.div>
+          </div>
         );
       })}
     </div>

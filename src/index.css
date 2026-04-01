@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&family=Verdana:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,223 +6,391 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    /* Windows 2000 silver palette */
+    --background: 0 0% 78%;        /* classic #C0C0C0 silver desktop */
+    --foreground: 0 0% 0%;         /* black text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 85%;              /* window surface #D8D8D8 */
+    --card-foreground: 0 0% 0%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 0 0% 85%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 225 100% 40%;       /* #0000CC classic blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 263 70% 50%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 75%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 215 28% 94%;
-    --muted-foreground: 217 19% 38%;
+    --muted: 0 0% 80%;
+    --muted-foreground: 0 0% 30%;
 
-    --accent: 263 70% 50%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 225 100% 25%;        /* title bar navy #000080 */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 50%;     /* #FF0000 */
+    --destructive-foreground: 0 0% 100%;
 
-    --success: 142 71% 45%;
-    --success-foreground: 210 40% 98%;
+    --success: 120 100% 25%;       /* #008000 */
+    --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 222 47% 7%;
+    --warning: 39 100% 50%;
+    --warning-foreground: 0 0% 0%;
 
-    --border: 214 31% 88%;
-    --input: 214 31% 88%;
-    --ring: 217 91% 60%;
+    --border: 0 0% 55%;            /* #8C8C8C darker shadow edge */
+    --input: 0 0% 100%;            /* white inputs */
+    --ring: 225 100% 40%;
 
-    --radius: 0.75rem;
+    --radius: 0rem;                /* no border radius — Win2000 is square */
 
-    --glass-bg: 0 0% 100%;
-    --glass-border: 214 31% 86%;
-    --glass-highlight: 217 91% 60%;
-    --elev-shadow: 220 43% 11%;
-    --glass-inset: 210 40% 100%;
+    /* Win2000 bevel colors */
+    --win-highlight: 0 0% 100%;    /* top-left bevel bright */
+    --win-shadow: 0 0% 40%;        /* bottom-right bevel dark */
+    --win-light: 0 0% 90%;
+    --win-mid: 0 0% 75%;
+    --win-dark: 0 0% 55%;
+    --win-darker: 0 0% 30%;
 
-    --gradient-start: 217 91% 60%;
-    --gradient-end: 263 70% 50%;
+    --win-titlebar-start: 225 100% 40%;
+    --win-titlebar-end: 180 100% 35%;
 
-    --sidebar-background: 210 40% 98%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 263 70% 50%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 214 31% 88%;
-    --sidebar-ring: 217 91% 60%;
+    --glass-bg: 0 0% 85%;
+    --glass-border: 0 0% 55%;
+    --glass-highlight: 225 100% 40%;
+    --elev-shadow: 0 0% 0%;
+    --glass-inset: 0 0% 100%;
+
+    --gradient-start: 225 100% 40%;
+    --gradient-end: 225 100% 25%;
+
+    --sidebar-background: 0 0% 85%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 225 100% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 100% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 55%;
+    --sidebar-ring: 225 100% 40%;
   }
 
+  /* Win2000 has no dark mode — it's always classic silver */
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 213 31% 91%;
-
-    --card: 222 41% 11%;
-    --card-foreground: 213 31% 91%;
-
-    --popover: 222 41% 11%;
-    --popover-foreground: 213 31% 91%;
-
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 263 70% 50%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 55%;
-
-    --accent: 263 70% 50%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
-    --success: 142 71% 45%;
-    --success-foreground: 210 40% 98%;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 222 47% 7%;
-
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
-
-    --glass-bg: 222 41% 14%;
-    --glass-border: 217 33% 22%;
-    --glass-highlight: 217 91% 60%;
-    --elev-shadow: 220 43% 2%;
-    --glass-inset: 217 33% 28%;
-
-    --gradient-start: 217 91% 60%;
-    --gradient-end: 263 70% 50%;
-
-    --sidebar-background: 222 47% 7%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 263 70% 50%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 217 91% 60%;
+    --background: 0 0% 78%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 85%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 85%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 225 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 75%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 80%;
+    --muted-foreground: 0 0% 30%;
+    --accent: 225 100% 25%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 120 100% 25%;
+    --success-foreground: 0 0% 100%;
+    --warning: 39 100% 50%;
+    --warning-foreground: 0 0% 0%;
+    --border: 0 0% 55%;
+    --input: 0 0% 100%;
+    --ring: 225 100% 40%;
+    --win-highlight: 0 0% 100%;
+    --win-shadow: 0 0% 40%;
+    --win-light: 0 0% 90%;
+    --win-mid: 0 0% 75%;
+    --win-dark: 0 0% 55%;
+    --win-darker: 0 0% 30%;
+    --win-titlebar-start: 225 100% 40%;
+    --win-titlebar-end: 180 100% 35%;
+    --glass-bg: 0 0% 85%;
+    --glass-border: 0 0% 55%;
+    --glass-highlight: 225 100% 40%;
+    --elev-shadow: 0 0% 0%;
+    --glass-inset: 0 0% 100%;
+    --gradient-start: 225 100% 40%;
+    --gradient-end: 225 100% 25%;
+    --sidebar-background: 0 0% 85%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 225 100% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 100% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 55%;
+    --sidebar-ring: 225 100% 40%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground;
+    font-family: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+    font-size: 11px;
   }
 }
 
 @layer components {
+  /* Raised 3D button bevel — Win2000 style */
+  .win-raised {
+    background-color: hsl(var(--card));
+    border-top: 2px solid hsl(var(--win-highlight));
+    border-left: 2px solid hsl(var(--win-highlight));
+    border-right: 2px solid hsl(var(--win-shadow));
+    border-bottom: 2px solid hsl(var(--win-shadow));
+    box-shadow: 1px 1px 0 hsl(var(--win-light)) inset, -1px -1px 0 hsl(var(--win-dark)) inset;
+  }
+
+  /* Pressed / sunken bevel */
+  .win-sunken {
+    background-color: hsl(var(--card));
+    border-top: 2px solid hsl(var(--win-shadow));
+    border-left: 2px solid hsl(var(--win-shadow));
+    border-right: 2px solid hsl(var(--win-highlight));
+    border-bottom: 2px solid hsl(var(--win-highlight));
+    box-shadow: 1px 1px 0 hsl(var(--win-dark)) inset, -1px -1px 0 hsl(var(--win-light)) inset;
+  }
+
+  /* Inset field (like a text input or list box) */
+  .win-inset {
+    background-color: hsl(var(--input));
+    border-top: 2px solid hsl(var(--win-shadow));
+    border-left: 2px solid hsl(var(--win-shadow));
+    border-right: 2px solid hsl(var(--win-light));
+    border-bottom: 2px solid hsl(var(--win-light));
+  }
+
+  /* Classic window chrome */
+  .win-window {
+    @apply win-raised;
+    background-color: hsl(var(--card));
+  }
+
+  /* Title bar gradient */
+  .win-titlebar {
+    background: linear-gradient(to right, hsl(var(--win-titlebar-start)), hsl(var(--win-titlebar-end)));
+    color: white;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+    font-size: 11px;
+    user-select: none;
+  }
+
+  /* Window title bar buttons (close / min / max) */
+  .win-titlebar-btn {
+    @apply win-raised;
+    width: 16px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: hsl(var(--foreground));
+  }
+
+  .win-titlebar-btn:active {
+    @apply win-sunken;
+  }
+
+  /* Classic button */
+  .win-btn {
+    @apply win-raised;
+    padding: 3px 12px;
+    font-family: 'Tahoma', 'Verdana', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+    color: hsl(var(--foreground));
+    min-width: 75px;
+    text-align: center;
+  }
+
+  .win-btn:hover {
+    background-color: hsl(var(--win-light));
+  }
+
+  .win-btn:active {
+    @apply win-sunken;
+    padding: 4px 11px 2px 13px;
+  }
+
+  .win-btn-primary {
+    @apply win-btn;
+    border: 2px solid hsl(var(--foreground));
+  }
+
+  /* Tab strip */
+  .win-tab {
+    @apply win-raised;
+    padding: 3px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-bottom: none;
+    margin-bottom: -1px;
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    position: relative;
+  }
+
+  .win-tab-active {
+    @apply win-raised;
+    padding: 3px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-bottom: none;
+    margin-bottom: -1px;
+    background-color: hsl(var(--card));
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Formerly glass-card — now a Win2000 window panel */
   .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-glass-border rounded-2xl;
-    box-shadow: 0 6px 26px hsl(var(--elev-shadow) / 0.14), inset 0 1px 0 0 hsl(var(--glass-inset) / 0.35);
+    @apply win-window;
   }
 
-  .glass-card-hover {
-    @apply glass-card transition-all duration-300;
-  }
-
-  .glass-card-hover:hover {
-    @apply border-glass-highlight/40;
-    box-shadow: 0 8px 40px -5px hsl(var(--primary) / 0.2), inset 0 1px 0 0 hsl(var(--glass-inset) / 0.4);
-    transform: translateY(-3px);
-  }
-
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
-    background-size: 200% 200%;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  .gradient-border {
-    @apply relative;
-  }
-
-  .gradient-border::before {
-    content: '';
-    @apply absolute inset-0 rounded-2xl p-[1px];
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.5), hsl(var(--accent) / 0.5));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-  }
-
-  .glow-primary {
-    box-shadow: 0 0 50px -10px hsl(var(--primary) / 0.35);
-  }
-
-  .glow-accent {
-    box-shadow: 0 0 50px -10px hsl(var(--accent) / 0.35);
-  }
-
-  .glow-success {
-    box-shadow: 0 0 50px -10px hsl(var(--success) / 0.35);
-  }
-
+  /* Stat card */
   .stat-card {
-    @apply relative overflow-hidden rounded-2xl border backdrop-blur-xl p-6 transition-all duration-500 cursor-default;
+    @apply win-raised;
+    background-color: hsl(var(--card));
+    padding: 8px 10px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .stat-card::after {
-    content: '';
-    @apply absolute top-0 right-0 w-32 h-32 rounded-full opacity-10;
-    filter: blur(40px);
+  /* Toolbar row */
+  .win-toolbar {
+    background-color: hsl(var(--card));
+    border-bottom: 1px solid hsl(var(--win-shadow));
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+
+  /* Separator in toolbars */
+  .win-separator {
+    width: 1px;
+    height: 18px;
+    background: hsl(var(--win-shadow));
+    margin: 0 4px;
+    display: inline-block;
+  }
+
+  /* Status bar */
+  .win-statusbar {
+    background-color: hsl(var(--card));
+    border-top: 1px solid hsl(var(--win-shadow));
+    padding: 2px 6px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Menubar */
+  .win-menubar {
+    background-color: hsl(var(--card));
+    border-bottom: 1px solid hsl(var(--win-shadow));
+    padding: 1px 4px;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    font-size: 11px;
+  }
+
+  .win-menu-item {
+    padding: 2px 8px;
+    cursor: pointer;
+    color: hsl(var(--foreground));
+  }
+
+  .win-menu-item:hover {
+    background-color: hsl(var(--primary));
+    color: white;
+  }
+
+  /* Group box (fieldset-style label) */
+  .win-groupbox {
+    border: 1px solid hsl(var(--win-shadow));
+    border-top: none;
+    padding: 8px;
+    position: relative;
+    margin-top: 8px;
+  }
+
+  .win-groupbox-label {
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    background: hsl(var(--card));
+    padding: 0 4px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  /* Progress bar */
+  .win-progress-track {
+    @apply win-inset;
+    height: 14px;
+    overflow: hidden;
+  }
+
+  .win-progress-fill {
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0px,
+      hsl(var(--primary)) 8px,
+      hsl(225 80% 55%) 8px,
+      hsl(225 80% 55%) 10px
+    );
+  }
+
+  /* Gradient text — reused in title */
+  .gradient-text {
+    color: hsl(var(--primary));
+    font-weight: bold;
   }
 }
 
 @layer utilities {
   .scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted)) transparent;
+    scrollbar-color: hsl(var(--win-mid)) hsl(var(--muted));
   }
 
   .scrollbar-thin::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 16px;
+    height: 16px;
   }
 
   .scrollbar-thin::-webkit-scrollbar-track {
-    background: transparent;
+    background: hsl(var(--muted));
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted));
-    border-radius: 4px;
+    background: hsl(var(--card));
+    border-top: 2px solid hsl(var(--win-highlight));
+    border-left: 2px solid hsl(var(--win-highlight));
+    border-right: 2px solid hsl(var(--win-shadow));
+    border-bottom: 2px solid hsl(var(--win-shadow));
   }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground));
-  }
-}
-
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
 }
