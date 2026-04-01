@@ -1,16 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { FinanceProvider } from "@/context/FinanceContext";
+import { Header } from "@/components/dashboard/Header";
+import { SummaryCards } from "@/components/dashboard/SummaryCards";
+import { BalanceChart } from "@/components/dashboard/BalanceChart";
+import { SpendingChart } from "@/components/dashboard/SpendingChart";
+import { TransactionsTable } from "@/components/dashboard/TransactionsTable";
+import { InsightsSection } from "@/components/dashboard/InsightsSection";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+const Index = () => (
+  <FinanceProvider>
+    <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8 max-w-7xl mx-auto space-y-6 lg:space-y-8">
+      <Header />
+      <SummaryCards />
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-6">
+        <div className="lg:col-span-3">
+          <BalanceChart />
+        </div>
+        <div className="lg:col-span-2">
+          <SpendingChart />
+        </div>
+      </div>
+      <InsightsSection />
+      <TransactionsTable />
     </div>
-  );
-};
-
-const Index = PlaceholderIndex;
+  </FinanceProvider>
+);
 
 export default Index;
