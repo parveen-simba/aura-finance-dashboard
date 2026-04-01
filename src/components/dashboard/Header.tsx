@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { useFinance } from "@/context/FinanceContext";
 import { AddTransactionModal } from "./AddTransactionModal";
-import { Shield, Eye, Sparkles } from "lucide-react";
+import { Shield, Eye, Moon, Sun } from "lucide-react";
+import { useTheme } from "@/hooks/use-theme";
 
 export const Header = () => {
   const { role, setRole } = useFinance();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <motion.header
@@ -14,7 +16,7 @@ export const Header = () => {
       className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
     >
       <div className="flex items-center gap-4">
-        <motion.div
+        {/* <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
@@ -22,7 +24,8 @@ export const Header = () => {
           style={{ boxShadow: '0 8px 32px -4px hsl(217 91% 60% / 0.4)' }}
         >
           <Sparkles className="w-6 h-6 text-primary-foreground" />
-        </motion.div>
+        </motion.div> */}
+        <img src="./public/favicon.png" alt="Logo" className="w-12 h-12 rounded-2xl" />
         <div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
             <span className="gradient-text">Finance</span>{" "}
@@ -32,6 +35,16 @@ export const Header = () => {
         </div>
       </div>
       <div className="flex items-center gap-3">
+        <motion.button
+          onClick={toggleTheme}
+          whileTap={{ scale: 0.95 }}
+          className="h-10 px-3 flex items-center gap-2 rounded-xl border border-border/60 bg-card/60 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all duration-300"
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          <span className="text-xs font-medium capitalize">{theme}</span>
+        </motion.button>
         <div className="flex items-center gap-1 bg-muted/40 rounded-xl p-1 border border-border/50 backdrop-blur-sm">
           {(["viewer", "admin"] as const).map((r) => (
             <motion.button

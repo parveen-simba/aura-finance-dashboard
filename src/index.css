@@ -6,6 +6,62 @@
 
 @layer base {
   :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 263 70% 50%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 28% 94%;
+    --muted-foreground: 217 19% 38%;
+
+    --accent: 263 70% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 7%;
+
+    --border: 214 31% 88%;
+    --input: 214 31% 88%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    --glass-bg: 0 0% 100%;
+    --glass-border: 214 31% 86%;
+    --glass-highlight: 217 91% 60%;
+    --elev-shadow: 220 43% 11%;
+    --glass-inset: 210 40% 100%;
+
+    --gradient-start: 217 91% 60%;
+    --gradient-end: 263 70% 50%;
+
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 263 70% 50%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 214 31% 88%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
     --background: 222 47% 7%;
     --foreground: 213 31% 91%;
 
@@ -16,7 +72,7 @@
     --popover-foreground: 213 31% 91%;
 
     --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 7%;
+    --primary-foreground: 210 40% 98%;
 
     --secondary: 263 70% 50%;
     --secondary-foreground: 210 40% 98%;
@@ -40,11 +96,11 @@
     --input: 217 33% 17%;
     --ring: 217 91% 60%;
 
-    --radius: 0.75rem;
-
     --glass-bg: 222 41% 14%;
     --glass-border: 217 33% 22%;
     --glass-highlight: 217 91% 60%;
+    --elev-shadow: 220 43% 2%;
+    --glass-inset: 217 33% 28%;
 
     --gradient-start: 217 91% 60%;
     --gradient-end: 263 70% 50%;
@@ -52,7 +108,7 @@
     --sidebar-background: 222 47% 7%;
     --sidebar-foreground: 213 31% 91%;
     --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 47% 7%;
+    --sidebar-primary-foreground: 210 40% 98%;
     --sidebar-accent: 263 70% 50%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217 33% 17%;
@@ -74,7 +130,7 @@
 @layer components {
   .glass-card {
     @apply bg-card/60 backdrop-blur-xl border border-glass-border rounded-2xl;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 hsl(217 33% 25% / 0.3);
+    box-shadow: 0 6px 26px hsl(var(--elev-shadow) / 0.14), inset 0 1px 0 0 hsl(var(--glass-inset) / 0.35);
   }
 
   .glass-card-hover {
@@ -83,7 +139,7 @@
 
   .glass-card-hover:hover {
     @apply border-glass-highlight/40;
-    box-shadow: 0 8px 40px -5px hsl(var(--primary) / 0.2), inset 0 1px 0 0 hsl(217 33% 28% / 0.4);
+    box-shadow: 0 8px 40px -5px hsl(var(--primary) / 0.2), inset 0 1px 0 0 hsl(var(--glass-inset) / 0.4);
     transform: translateY(-3px);
   }
 
